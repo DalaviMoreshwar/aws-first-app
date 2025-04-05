@@ -1,21 +1,27 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
+
 import "./App.css";
 
 function App() {
   const [data, setData] = useState("");
 
-  const fecthData = () => {
+  const fecthData = async () => {
     try {
-      const fetch.getData;
+      const res = await fetch("http://localhost:4000/post");
+      const data = await res.json();
+      setData(data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    fecthData();
+  }, []);
+
   return (
     <>
+      <pre>{JSON.stringify(data)}</pre>
       {/* <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
